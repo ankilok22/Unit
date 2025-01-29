@@ -6,16 +6,7 @@ function App() {
   const [text, setText] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [error, setError] = useState("");
-  const [ismodelOpen, setIsmodelOpen] = useState(false);
-  const [name, setName] = useState("");
-  const handleSumbitb = (e) => {
-    e.preventDefault();
-    if (name === "") {
-      setIsmodelOpen(true);
-    } else {
-      setIsmodelOpen(false);
-    }
-  };
+  
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -39,7 +30,7 @@ function App() {
           <input type="radio" name="boolean" />
           <span>Compound</span>
         </div>
-        {/* <div className="bg-gray-100 ">
+        <div className="bg-gray-100 ">
           <div className="h-8 w-full  flex-1 flex justify-center gap-5 px-10">
             Unit Name
             <input
@@ -54,28 +45,9 @@ function App() {
           <p className="text-red-600 text-center ">
             {text.length}/20 characters used
           </p>
-        </div> */}
+        </div>
         <div className="h-8 w-full  flex-1 flex justify-center gap-5 px-10">
-          <form
-            className="flex flex-col gap-4 w-1/3 mx-auto"
-            onSubmit={handleSumbitb}
-          >
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value )}
-              type="text"
-              placeholder="enter name"
-              className="outline-0 border w-1/3 p-1 h-6  m-1 text-left"
-            />
-            {ismodelOpen && <p className="text-red-500"> Name Error</p>}
-            <button type= "sumbit">sumbit</button>
-          </form>
-          {/* <p className=" h-8 text-right pr-5 w-1/3 ">Applicable To </p>
-          <div className="w-1/2 flex justify-left"> */}
-          {/* <select className="bg-white flex justify-left h-5 m-1 ">
-               <option value="" selected disabled>
-                select unit
-              </option>  */}
+
           <p className=" h-8 w-1/3 ">Applicable To </p>
           <select
             value={selectedOption}
