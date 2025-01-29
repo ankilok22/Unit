@@ -1,15 +1,22 @@
 import { useState } from "react";
 import "./App.css";
 import Button from "../components/Button";
-import PushButton from "../components/buttoncode";
-
-
-
 
 function App() {
   const [text, setText] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
   const [error, setError] = useState("");
+  const [ismodelOpen, setIsmodelOpen] = useState(false);
+  const [name, setName] = useState("");
+  const handleSumbitb = (e) => {
+    e.preventDefault();
+    if (name === "") {
+      setIsmodelOpen(true);
+    } else {
+      setIsmodelOpen(false);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!selectedOption) {
@@ -32,25 +39,37 @@ function App() {
           <input type="radio" name="boolean" />
           <span>Compound</span>
         </div>
-<div className="bg-gray-100 ">
+        {/* <div className="bg-gray-100 ">
+          <div className="h-8 w-full  flex-1 flex justify-center gap-5 px-10">
+            Unit Name
+            <input
+              type="text"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+              maxLength={20} // Restricts input to 20 characters
+              placeholder="Enter text (max 20 chars)"
+              className="outline-0 border w-1/3 p-1 h-6  m-1 text-left"
+            />
+          </div>
+          <p className="text-red-600 text-center ">
+            {text.length}/20 characters used
+          </p>
+        </div> */}
         <div className="h-8 w-full  flex-1 flex justify-center gap-5 px-10">
-          Unit Name
-          <input
-            type="text"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            maxLength={20} // Restricts input to 20 characters
-            placeholder="Enter text (max 20 chars)"
-            className="outline-0 border w-1/3 p-1 h-6  m-1 text-left"
-          />
-          </div>
-          <p className="text-red-600 text-center ">{text.length}/20 characters used</p>
-          </div>
-
-        <div
-          onSubmit={handleSubmit}
-          className="flex justify-center bg-gray-100  "
-        >
+          <form
+            className="flex flex-col gap-4 w-1/3 mx-auto"
+            onSubmit={handleSumbitb}
+          >
+            <input
+              value={name}
+              onChange={(e) => setName(e.target.value )}
+              type="text"
+              placeholder="enter name"
+              className="outline-0 border w-1/3 p-1 h-6  m-1 text-left"
+            />
+            {ismodelOpen && <p className="text-red-500"> Name Error</p>}
+            <button type= "sumbit">sumbit</button>
+          </form>
           {/* <p className=" h-8 text-right pr-5 w-1/3 ">Applicable To </p>
           <div className="w-1/2 flex justify-left"> */}
           {/* <select className="bg-white flex justify-left h-5 m-1 ">
@@ -72,7 +91,7 @@ function App() {
             <option value="Rate">Fixed(Rate)</option>
             <option value="KM">Fixed(KM)</option>
           </select>
-          {error && <p className="text-red-500 mt-1">{error}</p>}
+          {/* {error && <p className="text-red-500 mt-1">{error}</p>} */}
           {/* <button
             type="submit"
             className="mt-2 p-2 bg-blue-500 text-white rounded"
@@ -112,13 +131,10 @@ function App() {
           <div className=" font-bold italic  ">Mandatory Field</div>
         </div>
         <div class="h-8 w-full flex-4 flex flex-row gap-5 justify-center space-x-1 ">
-        
-         <Button>Save</Button>
-         <Button>Reset</Button>
-         <Button>Console</Button>
-         <Button>Print</Button>
-       
-
+          <Button type="submitb">Save</Button>
+          <Button>Reset</Button>
+          <Button>Console</Button>
+          <Button>Print</Button>
         </div>
       </div>
     </div>
